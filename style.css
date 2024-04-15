@@ -1,6 +1,7 @@
 :root {
     --main-bg-color: rgb(226, 119, 36);
     --second-bg-color: #18335D;
+    --third-bg-color: #FCECDB;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -20,19 +21,21 @@ body {
 
 .nav_bar {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1040px;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
     top: 0;
     left: 0;
     text-transform: capitalize;
-    z-index: 999;
     padding: 10px 20px;
 }
-
+.typed-text{
+    color: var(--second-bg-color);
+    font-size: 48px;
+    font-weight: bold;
+}
 .nav_bar ul {
     list-style: none;
     margin: 0;
@@ -43,20 +46,21 @@ body {
 
 .nav_bar ul li {
     margin: 0 20px;
-    transition: all ease .5s;
+    transition: all ease .8s;
     font-size: 16px;
 }
 
 .nav_bar ul li a {
     text-decoration: none;
-    font-weight: 500;
-    color: var(--second-bg-color);
+    font-weight: bold;
+    color: var(--second-bg-color); /* Initial color */
 }
 
-.nav_bar ul li a:hover {
-    text-decoration: underline;
-    color: var(--main-bg-color);
+/* Hover effect */
+.nav_bar ul li:hover a {
+    color: var(--main-bg-color); /* Color on hover */
 }
+
 
 .logo {
     color: var(--main-bg-color);
@@ -64,14 +68,16 @@ body {
 }
 
 .hero {
+    margin-top: 70px;
+
     width: 100%;
     background-color: transparent;
     padding: 4rem 1rem;
-    height: 82vh;
+    height: 80vh;
 }
 
 .content-wrapper {
-    max-width: 1240px;
+    max-width: 1040px;
     margin: 0 auto;
     display: flex;
     flex-direction: row-reverse;
@@ -127,3 +133,94 @@ body {
     
 }
 
+/* Section Styles */
+.feature-section {
+    width: 100%;
+    background-color: #FCECDB;
+    padding: 4rem 5rem;
+    margin-top: -40px;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+/* Title Styles */
+.feature-title {
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 42px;
+    font-weight: bold;
+    color: #18335D;
+    text-align: center;
+    margin-left: 70px;
+    margin-bottom: 2.8125rem;
+}
+
+/* Cards Container Styles */
+.feature-cards-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+/* Individual Card Styles */
+.feature-card {
+    flex: 1;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem;
+    background-color: #FFFFFF;
+}
+
+/* Card Content Styles */
+.feature-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+/* Card Title Styles */
+.feature-card-title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+    color: #18335D;
+    font-size: 2xl;
+}
+
+/* Card Description Styles */
+.feature-card-description {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: medium;
+    color: #18335D;
+}
+
+/* Card Button Styles */
+.feature-card-button {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #18335D;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    gap: 0.5rem;
+}
+
+/* Hover Effect for Card Button */
+.feature-card-button:hover {
+    transform: scale(1.05);
+}
+
+/* Arrow Icon Styles */
+.feature-arrow-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
