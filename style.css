@@ -415,3 +415,125 @@ body {
     color: var(--main-bg-color);
     margin-right: 10px;
 }
+.shape {
+    fill: #FCECDB;
+}
+
+.shape-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: -80px;
+}
+
+
+
+.mt{
+    margin-top: -2px;
+}
+.contact {
+    width: 100%;
+}
+
+
+.contact h1 {
+    color: var(--second-bg-color);
+    font-size: 42px;
+    font-weight: bold;
+    margin: 2rem;
+    text-align: center;
+}
+
+.contact p {
+    color: rgb(226,119,36);
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin: 10px;
+}
+
+.contact .info {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 90%;
+    padding: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact .info-item {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+.contact-icon{
+    margin-bottom: 12px;
+}
+
+.contact .info-item h4 {
+    color: rgb(226,119,36);
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.contact .info-item p {
+    color: black;
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: normal;
+    
+}
+
+.contact .info-item  {
+    color: black;
+    margin-top: 2rem;
+}
+
+.fas ,.fa-umbrella-beach{
+    color: var(--main-bg-color);
+    margin-right: 10px;
+}
+
+.form-container {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+.form-container label {
+    color: var(--second-bg-color);
+    font-size: medium;
+    font-weight: 600;
+}
+
+.form-container input{
+    border: 1px solid var(--second-bg-color);
+    border-radius: 0.25rem;
+    margin-bottom: 2px;
+}
+
+.form-container button {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--main-bg-color);
+    color: white;
+    padding: 0.75rem;
+    font-weight: bold;
+    margin-top: 10px;
+    
+}
+
+.contact .form-container button:hover {
+    background-color: #E27742;
+}
+
+.contact .form-container p span {
+    color: rgb(226,119,36);
+    font-weight: bold;
+}
+
+.mes{
+    height: 80px;
+}
