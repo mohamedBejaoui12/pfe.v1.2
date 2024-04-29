@@ -3,16 +3,16 @@ include 'connect.php';
 session_start();
 if(empty($_SESSION['login'])){
     header('location:login.php');
-    exit(); // Add exit() after header redirect to stop further execution
+    exit(); 
 }
 else{
-    $userId = $_SESSION['id']; // Change $userID to $userId for consistency
-    $sql3 = "SELECT * FROM user WHERE id = $userId"; // Update query variable name
+    $userId = $_SESSION['id']; 
+    $sql3 = "SELECT * FROM user WHERE id = $userId";
     $stm3 = $con->prepare($sql3);
     $stm3->execute();
     $userData = $stm3->fetch();
 
-    // Correct variable name to $userId
+
     $userId = $_SESSION['id'];
     $sql = "SELECT * FROM user WHERE id = $userId"; 
     $stm = $con->prepare($sql);
@@ -23,10 +23,10 @@ else{
         $lastName = $_POST['lastName'];
         $age=$_POST['age'];
         $email = $_POST['email'];
-        $password = $_POST['password']; // Correct variable name to $password
-        // Update query variable name to $sql2
+        $password = $_POST['password']; 
+ 
         $sql2 = "UPDATE user SET firstName='$firstName', lastName='$lastName',age=$age, email='$email', password='$password' WHERE id = $userId";
-        $stm2 = $con->prepare($sql2); // Update prepared statement variable name
+        $stm2 = $con->prepare($sql2); 
         $stm2->execute();
         if($stm2){
             echo '<div class="alert alert-info text-center w-50 m-auto">Updated successfully</div>';
@@ -77,8 +77,8 @@ else{
         </div>
         <!-- Search form with method GET -->
         <form class="d-flex ms-auto" role="search" method="GET" action="teachers.php" style="margin-right: 20px;">
-            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" style="color: rgb(226, 119, 36);" value="">
-            <button class="btn" style="color: rgb(226, 119, 36);font-size: 18px; font-weight: 500;background-color: white;" type="submit">Search</button>
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" style="color: rgb(226, 119, 36);font-size: 18px; font-weight: 500" value="">
+            <button class="btn" style="color: rgb(226, 119, 36);font-size: 18px; font-weight: 500;background-color: white;margin-left:10px;" type="submit">Search</button>
         </form>
     </div>
 </nav>
@@ -102,16 +102,7 @@ else{
                             <label for="age">Age</label>
                             <input type="text" class="form-control" id="age" name="age" value="<?php echo $row['age']?>" required>
                         </div>
-                        <!-- <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <select class="form-control" id="niveauScolaire" name="niveauScolaire">
-                                <option value="L'enseignement Primaire">L'enseignement Primaire</option>
-                                <option value="L'enseignement Préparatoire">L'enseignement Préparatoire</option>
-                                <option value="L'enseignement Secondaire">L'enseignement Secondaire</option>
-                                <option value="License">License</option>
-                                <option value="Master">Master</option>
-                            </select>
-                        </div> -->
+        
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']?>" required>

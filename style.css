@@ -604,3 +604,22 @@ body {
 .footer-text-color {
     color: var(--second-bg-color); /* You can replace this with your desired color */
 }
+.backTop {
+    position: sticky;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* Initially hide the button */
+}
+
+.backTop i {
+    font-size: 24px;
+}
+
+.backTop.show {
+    display: block; /* Show the button when scrolled down */
+}

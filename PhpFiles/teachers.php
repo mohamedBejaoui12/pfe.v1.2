@@ -6,39 +6,34 @@ if(empty($_SESSION['login'])){
     header('location:login.php');
 }
 
-// Set the number of rows per page
 $rowsPerPage = 5;
-
-// Initialize variables for search
 $search = '';
 $searchCondition = '';
-
-// Check if search query is provided
 if(isset($_GET['search'])){
     $search = $_GET['search'];
-    // Construct the search condition for SQL query
+
     $searchCondition = "WHERE fullName LIKE '%$search%' OR subjects LIKE '%$search%'";
 }
 
 try {
     $userID = $_SESSION['id'];
     
-    // Count total number of rows based on search condition
+
     $countSql = "SELECT COUNT(*) AS count FROM teachers $searchCondition";
     $countStm = $con->prepare($countSql);
     $countStm->execute();
     $rowCount = $countStm->fetchColumn();
     
-    // Calculate total number of pages
+
     $totalPages = ceil($rowCount / $rowsPerPage);
     
-    // Get current page number
+
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
     
-    // Calculate the starting row for the current page
+
     $startRow = ($currentPage - 1) * $rowsPerPage;
     
-    // Fetch data for the current page based on search condition
+    
     $sql = "SELECT * FROM teachers $searchCondition LIMIT :startRow, :rowsPerPage";
     $stm = $con->prepare($sql);
     $stm->bindValue(':startRow', $startRow, PDO::PARAM_INT);
@@ -59,6 +54,14 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Teachers</title>
+<style>
+     a{
+            text-decoration: none;
+            color:#18335D;
+            font-weight: bold;
+        }
+</style>
+ 
 </head>
 
 <body>
@@ -81,9 +84,9 @@ try {
                 </li>
             </ul>
         </div>
-        <!-- Search form with method GET -->
+        
         <form class="d-flex ms-auto" role="search" method="GET" action="teachers.php" style="margin-right: 20px;">
-            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" style="color: rgb(226, 119, 36);" value="<?php echo $search; ?>">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" style="color: rgb(226, 119, 36);font-size: 18px; font-weight: 500;text-align: left;" value="<?php echo $search; ?>">
             <button class="btn" style="color: rgb(226, 119, 36);font-size: 18px; font-weight: 500;background-color: white;" type="submit">Search</button>
         </form>
     </div>
@@ -96,31 +99,28 @@ try {
     <?php
     if($userData){
         foreach($userData as $row){
-            // Assuming you have 'img' column in your teachers table which stores the image as BLOB
+            
             $imageData = base64_encode($row["img"]);
             $src = 'data:image/jpeg;base64,'.$imageData;
             echo '
-            <div class="card mb-4" style="width: 100%;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="' .$src .'" class="img-fluid rounded-start" alt="Teacher Image">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title" style="color:#18335D;font-weight: bold;">'.$row['fullName'].'</h3>
-                            <h5 class="card-title">'.$row['subjects'].'</h5>
-                            <p class="card-text">'.$row['description'].'</p>
-                            <p class="card-text"><small class="text-body-secondary">'.$row['numeroTel'].'</small></p>
-                            <p class="card-text"><small class="text-body-secondary">'.$row['location'].'</small></p>
-                        </div>
+            <div class="card mb-3 card-link" style="max-width:1040px;">
+            <div class="row g-0">
+            <div class="col-md-3">
+            <img src="' .$src .'" class="img-fluid rounded-start" alt="Teacher Image">
+        </div>
+                <div class="col-md-9 d-flex justify-content-center align-items-center">
+                    <div class="card-body">
+                        <h3 class="card-title my-3" style="color:#18335D;font-weight: bold;">'.$row['fullName'].'</h3>
+                        <h5 class="card-title my-3">'.$row['subjects'].'</h5>
+                        <a href="description.php?id='. $row['id'] .'" >More Info <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
             ';
         }
     }
     ?>
-    <!-- Pagination links -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <?php for($page = 1; $page <= $totalPages; $page++): ?>
